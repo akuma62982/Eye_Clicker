@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Eye Clicker</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      user-select: none;
+    }
+
+    #eye {
+      width: 250px;
+      cursor: pointer;
+      transition: transform 0.1s ease;
+      border-radius: 150px;
+    }
+
+    #eye:active {
+      transform: scale(0.95);
+    }
+
+    #counter {
+      margin-top: 20px;
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+
+  <img 
+    id="eye" 
+    src="./img.png" 
+    alt="Œil réaliste"
+  >
+  <div id="counter">Clics : 0</div>
+
+  <script>
+    let clicks = 0;
+    const eye = document.getElementById("eye");
+    const counter = document.getElementById("counter");
+
+    eye.addEventListener("click", () => {
+      clicks++;
+      counter.textContent = "Clics : " + clicks;
+    });
+  </script>
+
+</body>
+</html>
+<p id="warning">attention tu pourrais etre le prochain</p>
+
+<p id="subtile">by Akuma!</p>
+
+
+
