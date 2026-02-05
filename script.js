@@ -54,6 +54,9 @@ eye.addEventListener("click", () => {
   count += doubleClick ? 2 : 1;
   counter.textContent = count;
 
+  // Mise à jour de la couleur
+  updatePupilColor();
+
   // Clignement rapide
   topLid.style.transform = "translateY(0)";
   bottomLid.style.transform = "translateY(0)";
@@ -84,6 +87,8 @@ doubleClickBtn.addEventListener("click", () => {
     count -= 10;
     doubleClick = true;
     counter.textContent = count;
+    // Mise à jour de la couleur
+    updatePupilColor();
     doubleClickBtn.disabled = true;
   }
 });
@@ -93,6 +98,9 @@ autoClickBtn.addEventListener("click", () => {
     count -= 20;
     autoClick++;
     counter.textContent = count;
+    // Mise à jour de la couleur
+    updatePupilColor();
+
     autoClickBtn.disabled = true;
     setInterval(() => {
       count += autoClick;
@@ -118,6 +126,8 @@ function spawnBonus() {
   bonus.addEventListener("click", () => {
     count += 5;
     counter.textContent = count;
+    // Mise à jour de la couleur
+    updatePupilColor();
     bonus.remove();
   });
 
@@ -128,3 +138,26 @@ function spawnBonus() {
 
 // Spawn bonus aléatoire toutes les 10 secondes
 setInterval(spawnBonus, 10000);
+
+// FONCTION POUR CHANGER LA COULEUR DE LA PUPILLE SELON LE SCORE
+function updatePupilColor() {
+  let color = "black"; // couleur par défaut
+
+  if (count >= 0 && count <= 999) color = "black";
+  else if (count >= 1000 && count <= 1999) color = "blue";
+  else if (count >= 2000 && count <= 2999) color = "green";
+  else if (count >= 3000 && count <= 3999) color = "violet";
+  else if (count >= 4000 && count <= 4999) color = "red";
+  else if (count >= 5000 && count <= 5999) color = "cyan";
+  else if (count >= 6000 && count <= 7999) color = "gold";
+  else if (count >= 8000 && count <= 12999) color = "hotpink";
+
+  pupil.style.backgroundColor = color;
+
+  // Glow pour couleurs "prestigieuses"
+  if (["cyan", "gold", "hotpink"].includes(color)) {
+    pupil.style.boxShadow = `0 0 20px ${color}`;
+  } else {
+    pupil.style.boxShadow = "none";
+  }
+}
